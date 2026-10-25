@@ -164,6 +164,24 @@ h2 { margin: 0; font: 700 clamp(30px, 3.5vw, 42px)/1.18 'Manrope', sans-serif; l
 .certifications p { margin: 0; }
 .certifications i { width: 3px; height: 3px; background: #4b5545; border-radius: 50%; }
 
+.project-card-static:hover { transform: none; border-color: var(--line); background: var(--surface); }
+.project-card:last-child:nth-child(odd) { grid-column: 1 / -1; min-height: 265px; }
+.project-card:last-child:nth-child(odd) .project-content > p:last-child { max-width: 850px; }
+
+.blog-section { padding: 0 0 108px; }
+.blog-card { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 26px; padding: 34px; border: 1px solid #35402d; border-radius: 10px; background: linear-gradient(110deg, #171e13, #121612); }
+.blog-icon { display: grid; place-items: center; width: 58px; height: 58px; border-radius: 10px; background: var(--accent-dark); color: var(--accent); }
+.blog-copy .eyebrow { margin-bottom: 10px; }
+.blog-copy h2 { font-size: 28px; letter-spacing: -1px; }
+.blog-copy > p:last-child { max-width: 580px; margin: 10px 0 0; color: var(--muted); font-size: 13px; line-height: 1.65; }
+.blog-card .button { white-space: nowrap; }
+@media (max-width: 760px) {
+  .project-card:last-child:nth-child(odd) { grid-column: auto; min-height: 290px; }
+  .blog-section { padding-bottom: 76px; }
+  .blog-card { grid-template-columns: 1fr; gap: 20px; padding: 26px; }
+  .blog-card .button { justify-self: start; }
+}
+
 .contact-section { padding: 108px 0; border-top: 1px solid var(--line); background: radial-gradient(ellipse at 50% 100%, rgba(151,194,77,.07), transparent 60%), #101310; text-align: center; }
 .contact-inner { display: flex; flex-direction: column; align-items: center; }
 .contact-inner h2 { font-size: clamp(40px, 5vw, 58px); letter-spacing: -2.5px; }

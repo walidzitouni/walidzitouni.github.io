@@ -5,13 +5,13 @@ import {
   ArrowUpRight,
   Award,
   BookOpen,
+  BrainCircuit,
   BriefcaseBusiness,
   Check,
   ChevronRight,
   Code2,
   Download,
   ExternalLink,
-  FileSearch,
   Github,
   GraduationCap,
   Linkedin,
@@ -19,8 +19,8 @@ import {
   MapPin,
   Menu,
   Network,
-  ScanSearch,
   ShieldCheck,
+  Smartphone,
   Sparkles,
   Star,
   TerminalSquare,
@@ -30,6 +30,7 @@ import './App.css'
 
 const GITHUB_URL = 'https://github.com/walidzitouni'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/walid-zitouni-634809299/'
+const BLOG_URL = 'https://daryx.vercel.app/about/'
 const EMAIL = 'zitouni-walid@outlook.fr'
 const CV_URL = `${import.meta.env.BASE_URL}CV__ZITOUNI_Walid.pdf`
 
@@ -38,41 +39,51 @@ const navItems = [
   { label: 'Projects', href: '#projects' },
   { label: 'Experience', href: '#experience' },
   { label: 'Education', href: '#education' },
+  { label: 'Blog', href: '#blog' },
 ]
 
+// Ordered by cybersecurity relevance, technical depth, and practical value.
 const projects = [
   {
-    name: 'Link Dumper',
-    description: 'A multithreaded web crawler for reconnaissance that extracts URLs, JavaScript files, API keys, and version data.',
-    tags: ['Python', 'Web Security', 'Recon'],
-    url: `${GITHUB_URL}/Link_dumper`,
-    icon: ScanSearch,
-    meta: '58 GitHub stars',
+    name: 'RMW-PenStrike',
+    description: 'An autonomous black-box pentesting framework coordinating multiple LLM agents for reconnaissance, parallel vulnerability investigations, anonymization, and OWASP-aligned reporting.',
+    tags: ['Python', 'Multi-agent AI', 'Docker', 'Pentesting'],
+    url: 'https://github.com/mohammed-el-alami/RMW_PenStrike',
+    icon: BrainCircuit,
+    meta: 'Priority 01 · Team project',
     featured: true,
   },
   {
+    name: 'Android Black-Box Fuzzing',
+    description: 'A native C/C++ fuzzing bench using AFL on an Android emulator to identify memory corruption and buffer overflows through dynamic analysis and disassembly.',
+    tags: ['AFL', 'C / C++', 'Ghidra', 'Android NDK'],
+    url: '',
+    icon: Smartphone,
+    meta: 'Priority 02 · Reverse engineering · 2025',
+  },
+  {
+    name: 'R3XSS',
+    description: 'A context-aware reflective XSS payload generator that analyzes injection points, crafts targeted variants, and exports results for Burp Suite, JSON, or Markdown workflows.',
+    tags: ['Python', 'Web Security', 'XSS', 'Burp Suite'],
+    url: `${GITHUB_URL}/R3XSS`,
+    icon: Code2,
+    meta: 'Priority 03 · Offensive security tool',
+  },
+  {
     name: 'Email Security Analyzer',
-    description: 'A full-stack platform for detecting spam, phishing, and malware, with SPF, DKIM, and DMARC verification.',
-    tags: ['TypeScript', 'React', 'AI'],
+    description: 'A full-stack platform for detecting spam, phishing, and suspicious attachments, with risk scoring, AI-assisted analysis, and SPF, DKIM, and DMARC verification.',
+    tags: ['TypeScript', 'React', 'Node.js', 'AI'],
     url: `${GITHUB_URL}/Email-Security-Analyzer`,
     icon: Mail,
-    meta: 'Full-stack security',
+    meta: 'Priority 04 · Full-stack security',
   },
   {
-    name: 'CTF Writeups',
-    description: 'A dedicated space for practical capture-the-flag writeups, security notes, and lessons learned from challenges.',
-    tags: ['Astro', 'CTF', 'Writeups'],
-    url: `${GITHUB_URL}/CTFWriteups`,
-    icon: BookOpen,
-    meta: 'Offensive security',
-  },
-  {
-    name: 'Fast LinkedIn Jobs',
-    description: 'A local job-search assistant that tracks new public listings in SQLite and generates formatted Excel reports.',
-    tags: ['Python', 'Streamlit', 'SQLite'],
-    url: `${GITHUB_URL}/Fast-Linkedin-jobs`,
-    icon: FileSearch,
-    meta: 'Automation tool',
+    name: 'Enterprise VPN & Mail Hardening',
+    description: 'A site-to-site IPSec architecture with OSPF/BGP routing, ACLs, and hardened mail services using DNSSEC, SPF, DKIM, and DMARC to reduce spoofing and protect network flows.',
+    tags: ['Cisco IOS', 'GNS3', 'IPSec', 'Postfix'],
+    url: '',
+    icon: Network,
+    meta: 'Priority 05 · Network security · 2025',
   },
 ]
 
@@ -278,24 +289,27 @@ function App() {
 
         <section className="section projects-section" id="projects">
           <div className="container">
-            <SectionHeading eyebrow="Selected work" title="Things I’ve built." description="A selection of public projects focused on security, automation, and practical problem-solving." />
+            <SectionHeading eyebrow="Selected work" title="Things I’ve built." description="Five projects prioritized by cybersecurity relevance, technical depth, and practical value." />
             <div className="projects-grid">
               {projects.map((project, index) => {
                 const Icon = project.icon
-                return (
-                  <a className="project-card" href={project.url} target="_blank" rel="noreferrer" key={project.name}>
-                    <div className="project-top">
-                      <div className="project-icon"><Icon size={23} /></div>
-                      <div className="project-number">0{index + 1}</div>
-                      <ArrowUpRight className="project-arrow" size={21} />
-                    </div>
-                    <div className="project-content">
-                      <p className="project-meta">{project.featured && <Star size={12} fill="currentColor" />}{project.meta}</p>
-                      <h3>{project.name}</h3>
-                      <p>{project.description}</p>
-                    </div>
-                    <div className="tag-list">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-                  </a>
+                const cardContent = <>
+                  <div className="project-top">
+                    <div className="project-icon"><Icon size={23} /></div>
+                    <div className="project-number">0{index + 1}</div>
+                    {project.url && <ArrowUpRight className="project-arrow" size={21} />}
+                  </div>
+                  <div className="project-content">
+                    <p className="project-meta">{project.featured && <Star size={12} fill="currentColor" />}{project.meta}</p>
+                    <h3>{project.name}</h3>
+                    <p>{project.description}</p>
+                  </div>
+                  <div className="tag-list">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+                </>
+                return project.url ? (
+                  <a className="project-card" href={project.url} target="_blank" rel="noreferrer" key={project.name}>{cardContent}</a>
+                ) : (
+                  <article className="project-card project-card-static" key={project.name}>{cardContent}</article>
                 )
               })}
             </div>
@@ -359,6 +373,18 @@ function App() {
               <div className="distinction-item"><ShieldCheck size={21} /><div><strong>CTF challenge creator</strong><span>Defensys · Pentest, crypto & CTFd infrastructure</span></div></div>
             </div>
             <div className="certifications"><span>Certifications</span><p>CRTA — Certified Red Team Analyst</p><i /><p>Jr Penetration Tester — TryHackMe</p><i /><p>SQLi Attacks — EC-Council</p></div>
+          </div>
+        </section>
+
+        <section className="blog-section" id="blog">
+          <div className="container blog-card">
+            <div className="blog-icon"><BookOpen size={28} /></div>
+            <div className="blog-copy">
+              <p className="eyebrow"><span />From my blog</p>
+              <h2>Notes from the field.</h2>
+              <p>CTF writeups, cybersecurity notes, and practical lessons from my research and hands-on challenges.</p>
+            </div>
+            <a className="button button-secondary" href={BLOG_URL} target="_blank" rel="noreferrer">Visit my blog <ArrowUpRight size={17} /></a>
           </div>
         </section>
 
